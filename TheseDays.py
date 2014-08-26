@@ -1,11 +1,17 @@
+import os.path
+import inspect
 import rumps
-from phrase import load, phrase
+from bin.phrase import load, phrase
 words = load()
+
+iconfile = 'icon.png'
+basedir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+ICONFILE = os.path.abspath(os.path.join(basedir, 'static', iconfile))
 
 rumps.debug_mode(True)
 class TheseDaysApp(rumps.App):
     def __init__(self):
-        super(TheseDaysApp, self).__init__("These Days", title=None, icon='icon.png')
+        super(TheseDaysApp, self).__init__("These Days", title=None, icon=ICONFILE)
         self.menu = ["These days...", rumps.separator, "Auto-ask?", "Preferences"]
 
     # @rumps.clicked("Preferences")

@@ -1,7 +1,11 @@
+import os
 import json
 import random
+import inspect
 
-FILENAME = 'words.json'
+filename = 'words.json'
+basedir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+FILENAME = os.path.abspath(os.path.join(basedir, '..', 'static', filename))
 
 def dump(outfile=FILENAME):
     from pattern.en import wordnet, conjugate, pluralize
