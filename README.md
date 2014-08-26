@@ -1,17 +1,18 @@
-these-days
+These Days
 ==========
 
-for remembering to create periodic time capsules
+for help creating periodic time capsules
 
-## requirements
+## Requirements
 * `py2app`
 * `rumps`
 
-## how to run
+## How to run
 
-#### Option 1: run, don't install
-* Run `python TheseDays.py`
+### Option 1. Run without installing
+ * Run `python TheseDays.py`
 
-#### Option 2: install
-* Run `python setup.py py2app`
-* Now drag `dist/TheseDays.app` to your Applications folder--or just open it!
+
+### Option 2: Install
+ * Run `python setup.py py2app`
+ * Now drag `dist/TheseDays.app` to your Applications folder--or just open it!
