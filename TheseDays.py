@@ -6,15 +6,15 @@ rumps.debug_mode(True)
 class TheseDaysApp(rumps.App):
     def __init__(self):
         super(TheseDaysApp, self).__init__("These Days", title=None, icon='icon.png')
-        self.menu = ["These days...", rumps.separator, "Auto-ask", "Preferences"]
+        self.menu = ["These days...", rumps.separator, "Auto-ask?", "Preferences"]
 
-    @rumps.clicked("Preferences")
-    def prefs(self, _):
-        rumps.alert("None yet!")
+    # @rumps.clicked("Preferences")
+    # def prefs(self, _):
+    #     rumps.alert("None yet!")
 
-    @rumps.clicked("Auto-ask")
-    def onoff(self, sender):
-        sender.state = not sender.state
+    # @rumps.clicked("Auto-ask?")
+    # def onoff(self, sender):
+    #     sender.state = not sender.state
 
     @rumps.clicked("These days...")
     def sayhi(self, _):
