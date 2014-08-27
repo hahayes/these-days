@@ -25,6 +25,7 @@ class TheseDaysApp(rumps.App):
         self.settings_dir = SETTINGS_DIR
         self.datafile = DATAFILE
         init_browser(HTMLDIR, SETTINGS_DIR)
+        self.PORT = 1988
 
     # @rumps.clicked("Preferences")
     # def prefs(self, _):
@@ -37,8 +38,8 @@ class TheseDaysApp(rumps.App):
     @rumps.clicked("View history")
     def check(self, _):
         # webbrowser.open('file://' + urllib.quote(self.browser_url))
-        subprocess.Popen(['python', '-m', 'SimpleHTTPServer'], cwd=self.settings_dir, stdin=None, stdout=None, stderr=None, close_fds=True)
-        webbrowser.open_new_tab('http://0.0.0.0:8000')
+        subprocess.Popen(['python', '-m', 'SimpleHTTPServer', str(self.PORT)], cwd=self.settings_dir, stdin=None, stdout=None, stderr=None, close_fds=True)
+        webbrowser.open_new_tab('http://0.0.0.0:{0}'.format(self.PORT))
 
     @rumps.clicked("These days...")
     def sayhi(self, _):
