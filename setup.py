@@ -1,7 +1,7 @@
 from setuptools import setup
 
 APP = ['TheseDays.py']
-DATA_FILES = ['static/icon.png', 'static/words.json']
+DATA_FILES = [('', ['static'])]
 OPTIONS = {
     'argv_emulation': True,
     'plist': {

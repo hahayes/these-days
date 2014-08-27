@@ -1,11 +1,8 @@
-import os
 import json
 import random
-import inspect
 
-filename = 'words.json'
-basedir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-FILENAME = os.path.abspath(os.path.join(basedir, '..', 'static', filename))
+from bin.utils import lazypath
+FILENAME = lazypath('static', 'words.json')
 
 def dump(outfile=FILENAME):
     from pattern.en import wordnet, conjugate, pluralize
