@@ -1,29 +1,30 @@
-import json
 import urllib
 import os.path
+import subprocess
 import webbrowser
 from datetime import datetime
 
 import rumps
 from bin.phrase import load, phrase
-from bin.utils import lazypath, data_dump, make_browser
+from bin.utils import lazypath, data_dump, init_browser
 
 words = load()
 rumps.debug_mode(True)
 
 ICONFILE = lazypath('static', 'icon.png')
-DATAFILE = lazypath('static', 'data.json')
-IN_BROWSERDIR = lazypath('static')
-OUT_BROWSERDIR = rumps.application_support('These Days')
-BROWSERFILE = os.path.join(OUT_BROWSERDIR, 'index.html')
+HTMLDIR = lazypath('static')
+SETTINGS_DIR = rumps.application_support('These Days')
+DATAFILE = os.path.join(SETTINGS_DIR, 'data.json')
+BROWSERFILE = os.path.join(SETTINGS_DIR, 'index.html')
 
 class TheseDaysApp(rumps.App):
     def __init__(self):
         super(TheseDaysApp, self).__init__("These Days", title=None, icon=ICONFILE)
         self.menu = ["These days...", "View history", rumps.separator, "Auto-ask?", "Preferences"]
         self.browser_url = BROWSERFILE
+        self.settings_dir = SETTINGS_DIR
         self.datafile = DATAFILE
-        make_browser(IN_BROWSERDIR, OUT_BROWSERDIR)
+        init_browser(HTMLDIR, SETTINGS_DIR)
 
     # @rumps.clicked("Preferences")
     # def prefs(self, _):
@@ -35,7 +36,9 @@ class TheseDaysApp(rumps.App):
 
     @rumps.clicked("View history")
     def check(self, _):
-        webbrowser.open('file://' + urllib.quote(self.browser_url))
+        # webbrowser.open('file://' + urllib.quote(self.browser_url))
+        subprocess.Popen(['python', '-m', 'SimpleHTTPServer'], cwd=self.settings_dir, stdin=None, stdout=None, stderr=None, close_fds=True)
+        webbrowser.open_new_tab('http://0.0.0.0:8000')
 
     @rumps.clicked("These days...")
     def sayhi(self, _):

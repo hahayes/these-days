@@ -1,3 +1,4 @@
+import json
 import shutil
 import os.path
 import inspect
@@ -27,5 +28,5 @@ def copytree(src, dst, symlinks=False, ignore=None):
         else:
             shutil.copy2(s, d)
 
-def make_browser(indir, outdir):
+def init_browser(indir, outdir):
     copytree(indir, outdir)
